@@ -17,9 +17,9 @@ jobs:
           echo "TKTOKEN: ${{ secrets.TKTOKEN }}"
       - uses: kubeshop/setup-testkube@v1
         with:
-          organization: ${{ secrets.TKORGANIZATION }}
-          environment: ${{ secrets.TKENVIRONMENT }}
-          token: ${{ secrets.TKTOKEN }}
+          organization: nintexglobal
+          environment: test-control-cluster
+          token: tkcapi_3533e24da8697cda456e326c5eedde
 
       - run: |
           testkube run testworkflow playwright-poc -f

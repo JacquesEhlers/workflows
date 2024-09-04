@@ -8,6 +8,12 @@ jobs:
   playwright-poc:
     runs-on: ubuntu-latest
     steps:
+      # New step to print secrets
+      - name: Print secrets
+        run: |
+          echo "TKORGANIZATION: ${{ secrets.TKORGANIZATION }}"
+          echo "TKENVIRONMENT: ${{ secrets.TKENVIRONMENT }}"
+          echo "TKTOKEN: ${{ secrets.TKTOKEN }}"
       - uses: kubeshop/setup-testkube@v1
         with:
           organization: ${{ secrets.TKORGANIZATION }}

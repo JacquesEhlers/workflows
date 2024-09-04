@@ -17,8 +17,8 @@ jobs:
           echo "TKTOKEN: ${{ secrets.TKTOKEN }}"
       - uses: kubeshop/setup-testkube@v1
         with:
-          organization: nintexglobal
-          environment: test-control-cluster
+          organization: NintexGlobal
+          environment: "Test Control Cluster"
           token: tkcapi_3533e24da8697cda456e326c5eedde
 
       - run: |

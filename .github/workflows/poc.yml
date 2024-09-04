@@ -1,0 +1,18 @@
+name: Playwright POC
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  playwright-poc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kubeshop/setup-testkube@v1
+        with:
+          organization: ${{ secrets.TKORGANIZATION }}
+          environment: ${{ secrets.TKENVIRONMENT }}
+          token: ${{ secrets.TKTOKEN }}
+
+      - run: |
+          testkube run testworkflow playwright-poc -f

@@ -11,8 +11,8 @@ jobs:
     steps:
       - uses: kubeshop/setup-testkube@v1
         with:
-          organization: NintexGlobal
-          environment: Test Control Cluster
+          organization: nintexglobal
+          environment: test-control-cluster
           token: tkcapi_647ea926fb80823b2924af4aa55781
 
       - run: |

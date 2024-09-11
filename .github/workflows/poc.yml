@@ -16,4 +16,7 @@ jobs:
           token: tkcapi_647ea926fb80823b2924af4aa55781
 
       - run: |
-          testkube run testworkflow playwright-poc -f
+          testkube run testworkflow playwright-poc-2 -f --config environment=dev
+
+      - run: |
+          testkube watch testworkflowexecution playwright-poc-2

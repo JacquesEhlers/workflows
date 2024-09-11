@@ -42,3 +42,8 @@ jobs:
           # Example of using the variables in a subsequent command
           # Replace the echo command with any actual command you want to run
           echo "Running next command with id: ${{ steps.run-testkube.outputs.id }} and name: ${{ steps.run-testkube.outputs.name }}"
+
+      # Next step where you use the extracted variables
+      - name: Use the id and name in the next command
+        run: |
+          testkube watch testworkflowexecution ${{ steps.run-testkube.outputs.name }}

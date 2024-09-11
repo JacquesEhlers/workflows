@@ -1,8 +1,16 @@
 name: Playwright POC
 
 on:
-  push:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      workflow_name:
+        description: 'The Testkube workflow name'
+        required: true
+        type: string
+      environment:
+        description: 'The environment to run workflow against (dev, test, staging, performance)'
+        required: true
+        type: string
 
 jobs:
   playwright-poc:
@@ -20,7 +28,7 @@ jobs:
         id: run-testkube
         run: |
           # Run the testkube command and output the result in JSON format
-          output=$(testkube run testworkflow playwright-poc-2 --config environment=test --output json)
+          output=$(testkube run testworkflow "$WORKFLOW_NAME --config environment="$ENVIRONMENT" --output json)
 
           # Use jq to extract 'name' from the JSON output
           name=$(echo "$output" | jq -r '.name')

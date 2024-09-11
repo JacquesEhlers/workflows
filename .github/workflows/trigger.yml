@@ -14,15 +14,10 @@ on:
         default: 'test'
 
 jobs:
-  trigger-testkube:
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Trigger the reusable workflow
-        uses: ./.github/workflows/run_testkube_workflow.yml
-        with:
-          workflow_name: ${{ github.event.inputs.workflow_name }}
-          environment: ${{ github.event.inputs.environment }}
+  run_testkube_tests:
+    name: Run Testkub Tests
+    uses: ./.github/workflows/run_testkube_workflow.yml
+    with:
+      workflow_name: ${{ github.event.inputs.workflow_name }}
+      environment: ${{ github.event.inputs.environment }}

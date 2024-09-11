@@ -28,7 +28,10 @@ jobs:
         id: run-testkube
         run: |
           # Run the testkube command and output the result in JSON format
-          output=$(testkube run testworkflow "$WORKFLOW_NAME --config environment="$ENVIRONMENT" --output json)
+          output=$(testkube run testworkflow ${{ inputs.workflow_name }} --config environment=${{ inputs.environment }} --output json)
+
+          # Print the output for debugging purposes
+          echo "Testkube Output: $output"
 
           # Use jq to extract 'name' from the JSON output
           name=$(echo "$output" | jq -r '.name')

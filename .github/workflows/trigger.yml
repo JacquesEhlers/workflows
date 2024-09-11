@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - name: Trigger the reusable workflow
-      uses: ./.github/workflows/run-testkube.yml
+      uses: ./.github/workflows/run_testkube_workflow.yml
       with:
         workflow_name: ${{ github.event.inputs.workflow_name }}
         environment: ${{ github.event.inputs.environment }}

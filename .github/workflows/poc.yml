@@ -22,28 +22,13 @@ jobs:
           # Run the testkube command and output the result in JSON format
           output=$(testkube run testworkflow playwright-poc-2 --config environment=test --output json)
 
-          # Print the output for debugging purposes
-          echo "Testkube Output: $output"
-
-          # Use jq to extract 'id' and 'name' from the JSON output
-          id=$(echo "$output" | jq -r '.id')
+          # Use jq to extract 'name' from the JSON output
           name=$(echo "$output" | jq -r '.name')
 
           # Set the extracted values as outputs for this step
-          echo "::set-output name=id::$id"
           echo "::set-output name=name::$name"
 
       # Next step where you use the extracted variables
-      - name: Use the id and name in the next command
-        run: |
-          echo "Using id: ${{ steps.run-testkube.outputs.id }}"
-          echo "Using name: ${{ steps.run-testkube.outputs.name }}"
-
-          # Example of using the variables in a subsequent command
-          # Replace the echo command with any actual command you want to run
-          echo "Running next command with id: ${{ steps.run-testkube.outputs.id }} and name: ${{ steps.run-testkube.outputs.name }}"
-
-      # Next step where you use the extracted variables
-      - name: Use the id and name in the next command
+      - name: Watch until test is completed
         run: |
           testkube watch testworkflowexecution ${{ steps.run-testkube.outputs.name }}
